@@ -50,6 +50,16 @@
             //if the primary class is not binary ...
         }
     }
+
+    /**
+     * To calculate entropia, we need : 
+     * The name of the field we're browsing
+     * 
+     */
+
+    const calculateEntropia = () => {
+
+    }
     /**
      * To calculate Gain, we need, the global enthropia, and the name of the field we need to evaluate
      * Eventually the enthropia of the corresponding field
