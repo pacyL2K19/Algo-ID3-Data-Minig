@@ -25,6 +25,7 @@
     
     const calculateGlobalEntropia  = (pClassName, pData) => {
         if (isBinary(pClassName)) {
+            const Hx; // the entropia
             const values = getNumberOfInstance(data, pClassName).values;
             let pP1 = 0; //proportions 
             let pP2 = 0;
@@ -39,15 +40,53 @@
                     tabP2.push(' ')
                 }
             }
+
+            if (pP1 !== 0 && pP2 !== 0) {
+                pP1 = tabP1.length/pData.length;
+                pP2 = tabP2.length/pData.length;
+        
+                Hx = -(pP1*Math.log2(pP1) + pP2*Math.log2(pP2));
+            } else {
+                Hx = 0; // To handle probable exceptions while calculing the log 
+            }
     
-            pP1 = tabP1.length/pData.length;
-            pP2 = tabP2.length/pData.length;
-    
-            const Hx = -(pP1*Math.log2(pP1) + pP2*Math.log2(pP2));
             return Hx
     
         } else {
             //if the primary class is not binary ...
+        }
+    }
+    /**
+     * This method is going to calculate the entropia of the specific attribute
+     * Needs : 
+     * The name of the attribute
+     * data array 
+     */
+    const calculateEntropia = (pAttribute, pData) => {
+        if (pData[0][pAttribute]) {
+            let i = 0;
+            numbOfPertinancies = [];
+            pPTab = [] // this tab gonna contain all the proportions
+            values = getNumberOfInstance(pData, pAttribute).values;
+            // get number of instances of the primary attribute
+
+            mainValues = getNumberOfInstance(pData, className).values;
+            if (isBinary(className)) {
+                // We're sure to have only to possibilities
+                
+                for (value of values) {
+                    numbOfPertinancies[i] = 0;
+                    i ++;
+                }
+                for (data of pData) {
+
+                }
+            } else {
+                // to be handled
+            }
+        } else {
+            // An error "bruit" 
+            // to be handled
         }
     }
     /**
