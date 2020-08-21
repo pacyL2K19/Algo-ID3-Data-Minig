@@ -23,7 +23,21 @@ const className = 'I'
 
 const calculateGlobalEnthropia  = (className, data) => {
     if (isBinary(className)) {
-        const p1
+        const values = getNumberOfInstance(data, className).values;
+        let pP1 = 0;
+        let pP2 = 0;
+        let tabP1 = [];
+        let tabP2 = [];
+        let p1 = values[0];
+        let p2 = values[1];
+        for (d of data) {
+            if (d[className] === p1) {
+                tabP1.push(' ');
+            } else if (d[className] === p2) {
+                tabP2.push(' ')
+            }
+        }
+
     } else {
 
     }
@@ -45,16 +59,19 @@ const calculateGain = () => {
 const getNumberOfInstance = (data, field) => {
     let numberOfInstances = 0;
     let currentValue = '';
+    let values = [];
     for (d of data) {
         console.log(d.field)
         if (d[field] !== currentValue) {
             numberOfInstances ++;
             currentValue = d[field]
+            values.push(d[field]);
         }
     }
     return {
         field,
-        numberOfInstances
+        numberOfInstances,
+        values
     }
 }
 
