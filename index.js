@@ -3,8 +3,17 @@
  */
 
 const data = [
-
+    {M: 'Moyen', A : 'Moyen', R : 'Village', E : 'oui', I : 'oui'},
+    {M: 'Elevee', A : 'Moyen', R : 'Bourg', E : 'non', I : 'non'},
+    {M: 'Faible', A : 'Agee', R : 'Bourg', E : 'non', I : 'non'},
+    {M: 'Faible', A : 'Moyen', R : 'Bourg', E : 'oui', I : 'oui'},
+    {M: 'Moyen', A : 'Jeune', R : 'Ville', E : 'oui', I : 'oui'},
+    {M: 'Elevee', A : 'Agee', R : 'Ville', E : 'oui', I : 'non'},
+    {M: 'Moyen', A : 'Agee', R : 'Ville', E : 'oui', I : 'non'},
+    {M: 'Faible', A : 'Moyen', R : 'Village', E : 'non', I : 'non'},
 ];
+
+const className = 'I'
 
 /**
  * To calculate enthropia, we need :
@@ -12,8 +21,12 @@ const data = [
  * @data : the entire array of 
  */
 
-const calculateEnthropia  = (className, data) => {
+const calculateGlobalEnthropia  = (className, data) => {
+    if (isBinary(className)) {
+        const p1
+    } else {
 
+    }
 }
 /**
  * To calculate Gain, we need, the global enthropia, and the name of the field we need to evaluate
@@ -21,4 +34,37 @@ const calculateEnthropia  = (className, data) => {
  */
 const calculateGain = () => {
 
+}
+
+/**
+ * This method is gonna help us to determin the number of instances
+ * After it'll decide if the class i binary or not
+ * takes a field of the array as a parameter and the entire data
+ */
+
+const getNumberOfInstance = (data, field) => {
+    let numberOfInstances = 0;
+    let currentValue = '';
+    for (d of data) {
+        console.log(d.field)
+        if (d[field] !== currentValue) {
+            numberOfInstances ++;
+            currentValue = d[field]
+        }
+    }
+    return {
+        field,
+        numberOfInstances
+    }
+}
+
+/**
+ * The method thst helps us to decide if the class is binary
+ */
+
+const isBinary = (field) => {
+    const keys = getNumberOfInstance(data, field).numberOfInstances;
+    let decision = false;
+    keys === 2 ? decision = true : decision = false;
+    return decision;
 }
